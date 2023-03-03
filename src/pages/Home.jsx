@@ -2,7 +2,15 @@ import {_} from 'lodash';
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {IcLogout} from '../assets';
-import {Container, Header, ItemApproval, ItemSort, List} from '../components';
+import {
+  Container,
+  Header,
+  Input,
+  ItemApproval,
+  ItemSort,
+  List,
+  TextView,
+} from '../components';
 import DataDummy from '../Data/Approval.json';
 import {colors} from '../utils';
 
@@ -11,35 +19,72 @@ const SORT = ['All', 'Medical', 'Optical', 'Transport', 'Dental'];
 const Home = ({navigation}) => {
   const [data, setData] = useState(DataDummy);
   const [sort, setSort] = useState('All');
+  const [search, setSearch] = useState('');
 
   const onLoadMore = () => {
+    let oldData = _.clone(data);
+
     if (sort != 'All') {
-      let newData = data.filter(item => item?.category === sort.toLowerCase());
+      oldData = oldData.filter(item => item?.category === sort.toLowerCase());
       const add = DataDummy.filter(
         item => item?.category === sort.toLowerCase(),
       );
 
-      newData.push(...add);
-      setData(newData);
+      oldData.push(...add);
     } else {
-      let newData = _.clone(data);
-
-      newData.push(...DataDummy);
-      setData(newData);
+      oldData.push(...DataDummy);
     }
+
+    if (search) {
+      const _search = search.toLowerCase();
+
+      oldData = oldData.filter(item => {
+        return item?.employeeName?.toLowerCase().match(_search);
+      });
+    }
+
+    setData(oldData);
   };
 
-  const onSort = select => {
+  const onSort = (select, oldData) => {
     if (select != sort) {
       setSort(select);
 
       if (select != 'All') {
-        let newData = DataDummy.filter(
+        oldData = oldData.filter(
           item => item?.category === select.toLowerCase(),
         );
-        setData(newData);
-      } else setData(DataDummy);
+      }
+
+      if (search) {
+        const _search = search.toLowerCase();
+
+        oldData = oldData.filter(item => {
+          return item?.employeeName?.toLowerCase().match(_search);
+        });
+      }
+
+      setData(oldData);
     }
+  };
+
+  const onSearch = (value, oldData) => {
+    setSearch(value);
+
+    if (sort != 'All') {
+      oldData = oldData.filter(
+        item => item?.category === sort.toLowerCase(),
+      );
+    }
+
+    const _search = value.toLowerCase();
+    let newData = oldData;
+
+    const filtered = newData.filter(item => {
+      return item?.employeeName?.toLowerCase().match(_search);
+    });
+
+    setData(filtered);
   };
 
   return (
@@ -51,13 +96,20 @@ const Home = ({navigation}) => {
       />
 
       <View style={styles.containerSort}>
+        <Input
+          style={styles.search}
+          value={search}
+          placeholder={'Search...'}
+          onChangeText={value => onSearch(value, _.clone(DataDummy))}
+        />
+
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {SORT.map((item, index) => (
             <ItemSort
               key={index}
               value={item}
               isActive={sort === item}
-              onPress={() => onSort(item)}
+              onPress={() => onSort(item, DataDummy)}
             />
           ))}
         </ScrollView>
@@ -71,6 +123,7 @@ const Home = ({navigation}) => {
             onPress={() => navigation.navigate('Details', {data: item})}
           />
         )}
+        renderEmpty={() => <TextView>{'No Data'}</TextView>}
         onLoadMore={onLoadMore}
       />
     </Container>
@@ -84,5 +137,10 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     marginBottom: 8,
     backgroundColor: colors.white,
+  },
+
+  search: {
+    marginHorizontal: 8,
+    marginBottom: 10,
   },
 });
