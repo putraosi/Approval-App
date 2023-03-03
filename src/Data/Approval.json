@@ -1,0 +1,102 @@
+[
+    {
+        "id": 1,
+        "employeeNumber": 1234567890,
+        "employeeName": "Medical 1",
+        "claimDate": "01 Mar 2023",
+        "category": "medical",
+        "reimbursementAmount": 20000,
+        "description": "bla bla bla",
+        "status": "rejected"
+    },
+    {
+        "id": 2,
+        "employeeNumber": 5678901234,
+        "employeeName": "Optical 1",
+        "claimDate": "02 Mar 2023",
+        "category": "optical",
+        "reimbursementAmount": 20000,
+        "description": "bla bla bla",
+        "status": "rejected"
+    },
+    {
+        "id": 3,
+        "employeeNumber": 89012344567,
+        "employeeName": "Transport 1",
+        "claimDate": "01 Mar 2023",
+        "category": "transport",
+        "reimbursementAmount": 20000,
+        "description": "bla bla bla",
+        "status": "rejected"
+    },
+    {
+        "id": 4,
+        "employeeNumber": 7123450968,
+        "employeeName": "Dental 1",
+        "claimDate": "02 Mar 2023",
+        "category": "dental",
+        "reimbursementAmount": 20000,
+        "description": "bla bla bla",
+        "status": "rejected"
+    },
+    {
+        "id": 5,
+        "employeeNumber": 1234567890,
+        "employeeName": "Medical 2",
+        "claimDate": "01 Mar 2023",
+        "category": "medical",
+        "reimbursementAmount": 20000,
+        "description": "bla bla bla",
+        "status": "rejected"
+    },
+    {
+        "id": 6,
+        "employeeNumber": 5678901234,
+        "employeeName": "Optical 2",
+        "claimDate": "02 Mar 2023",
+        "category": "optical",
+        "reimbursementAmount": 20000,
+        "description": "bla bla bla",
+        "status": "rejected"
+    },
+    {
+        "id": 7,
+        "employeeNumber": 89012344567,
+        "employeeName": "Transport 2",
+        "claimDate": "01 Mar 2023",
+        "category": "transport",
+        "reimbursementAmount": 20000,
+        "description": "bla bla bla",
+        "status": "rejected"
+    },
+    {
+        "id": 8,
+        "employeeNumber": 7123450968,
+        "employeeName": "Dental 2",
+        "claimDate": "02 Mar 2023",
+        "category": "dental",
+        "reimbursementAmount": 20000,
+        "description": "bla bla bla",
+        "status": "rejected"
+    },
+    {
+        "id": 9,
+        "employeeNumber": 1234567890,
+        "employeeName": "Medical 3",
+        "claimDate": "01 Mar 2023",
+        "category": "medical",
+        "reimbursementAmount": 20000,
+        "description": "bla bla bla",
+        "status": "rejected"
+    },
+    {
+        "id": 10,
+        "employeeNumber": 5678901234,
+        "employeeName": "Optical 3",
+        "claimDate": "02 Mar 2023",
+        "category": "optical",
+        "reimbursementAmount": 20000,
+        "description": "bla bla bla",
+        "status": "rejected"
+    }
+]
